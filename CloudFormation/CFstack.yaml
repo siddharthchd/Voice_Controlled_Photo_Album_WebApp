@@ -1,0 +1,51 @@
+{
+"AWSTemplateFormatVersion": "2010-09-09",
+"Transform": "AWS::Serverless-2016-10-31",
+"Description": "CloudFormation Demo",
+"Resources": {
+    "S3Bucket": {
+        "Type": "AWS::S3::Bucket",
+        "Properties": {
+            "AccessControl": "PublicRead",
+            "BucketName": "frontendBucketCF",
+            "WebsiteConfiguration": {
+                "IndexDocument": "index.html",
+                "ErrorDocument": "error.html"
+            }
+        }
+      },
+    "LF1demo": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+                "Code": {
+                    "S3Bucket": "lambda2-code",
+                    "S3Key": "search-lambda.zip"
+                },
+                "FunctionName": "demo",
+                "Handler": "demo/search-lambda.lambda_handler",
+                "Runtime": "python3.7",
+                "Description": "Lambda function 2 for CF Demo",
+                "MemorySize": 128,
+                "Timeout": 30,
+                "Role": "arn:aws:iam::420442937540:role/service-role/lf2_role",
+                "Environment": {
+                    "Variables": {
+                        "REGION": "us-west-2"
+                    }
+                }
+            }
+        }
+  },      
+
+"Outputs": {
+        "WebsiteURL": {
+            "Description": "URL for Website Hosted on S3",
+            "Value": {
+                "Fn::GetAtt": [
+                    "S3Bucket",
+                    "WebsiteURL"
+                ]
+            }
+        }
+   } 
+}

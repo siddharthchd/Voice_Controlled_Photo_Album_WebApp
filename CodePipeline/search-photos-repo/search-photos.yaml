@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: Lambda NodeJS starter project
+Parameters:
+LambdaName:
+    Description: "search-photos"
+    Type: "String"
+LambdaRole:
+    Description: "Role for this function"
+    Type: "String"
+Resources:
+  LambdaInstagramWrapper:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Role: !Ref LambdaRole
+      FunctionName: !Ref LambdaName
+      MemorySize: 512
+      Timeout: 60
+      Handler: index.handler
+      Runtime: nodejs6.10
+      CodeUri: .

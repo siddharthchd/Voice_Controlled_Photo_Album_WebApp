@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: 'AWS::Serverless-2016-10-31'
+Description: CloudFormation Demo
+Resources:
+	S3Bucket:
+		Type: 'AWS::S3::Bucket'
+		Properties:
+			AccessControl: PublicRead
+			BucketName: frontendBucketCF
+			WebsiteConfiguration:
+				IndexDocument: index.html
+				ErrorDocument: error.html
+Outputs:
+	WebsiteURL:
+		Value: !GetAtt
+			- S3Bucket
+			- WebsiteURL
+		Description: URL for Website Hosted on S3
+	S3BucketSecureURL:
+		Value: !Join
+			- ''
+			- - 'https://'
+				- !GetAtt
+					- S3Bucket
+					- DomainName
+		Description: Name of S3 Bucket to hold website content
+

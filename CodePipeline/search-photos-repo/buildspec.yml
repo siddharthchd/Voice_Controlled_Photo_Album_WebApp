@@ -1,0 +1,9 @@
+version: 0.2  
+phases:  
+  install:
+    commands:
+      - aws cloudformation package --template-file search-photos.yaml --s3-bucket lambda-deployement-pipeline-bucket --output-template-file search-photos.yaml
+artifacts:  
+  type: zip
+  files:
+    - search-photos.yaml
