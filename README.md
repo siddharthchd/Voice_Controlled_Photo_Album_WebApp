@@ -1,6 +1,6 @@
 # **Voice Controlled Photo Album**
  
-The photo album is a web application taht can be searched using natural language through both text and voice. This web application was developed as part of the course project assignment for the course - Cloud Computing (CS-GY:9223, NYU Tandon) 
+The photo album is a web application that can be searched using natural language through both text and voice. This web application was developed as part of the course project assignment for the course - Cloud Computing (CS-GY:9223, NYU Tandon) 
 
 
 # Table of contents
